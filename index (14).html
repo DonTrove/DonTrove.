@@ -1,187 +1,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Don Trove — Le Trésor de Misfah</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Don Trove — Thoughtfully curated gifts for every occasion, wrapped in elegance, delivered with care."/>
+  <title>Don Trove — Curated Gifts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+:root {
+  --plum:       #2D0A4E;
+  --royal:      #4B1A8C;
+  --violet:     #7B3FC4;
+  --lavender:   #C4A8E8;
+  --blush:      #F3EBF9;
+  --gold:       #C9A84C;
+  --gold-light: #E8C97A;
+  --cream:      #FAF6FF;
+  --text:       #1A0630;
+  --muted:      #7A6890;
+  --white:      #FFFFFF;
+  --beige:      #F5F0E8;
+  --beige-soft: #EDE8DC;
+  --shadow:     0 4px 32px rgba(75, 26, 140, 0.13);
+  --shadow-lg:  0 12px 60px rgba(45, 10, 78, 0.22);
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══ HEADER ══ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(45, 10, 78, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(196, 168, 232, 0.18);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+/* ── CHANGED: brand text → beige ── */
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--beige);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.brand span {
+  color: var(--beige-soft);
+  font-style: italic;
+  font-weight: 400;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── CHANGED: nav button text → beige ── */
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--beige);
+  padding: 8px 18px;
+  border-radius: 40px;
+  transition: all 0.25s;
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(245, 240, 232, 0.15);
+  color: var(--beige);
+}
+.nav-btn.cart-btn {
+  background: var(--gold);
+  color: var(--plum);
+  font-weight: 600;
+  position: relative;
+  padding-right: 22px;
+}
+.nav-btn.cart-btn:hover { background: var(--gold-light); }
+
+.cart-badge {
+  position: absolute;
+  top: -5px; right: -5px;
+  background: var(--violet);
+  color: #fff;
+  border-radius: 50%;
+  width: 19px; height: 19px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.cart-badge.show { display: flex; }
+
+/* ══ HERO ══ */
+/* ── CHANGED: hero background → deep purple gradient ── */
+.hero {
+  background: linear-gradient(135deg, var(--plum) 0%, var(--royal) 60%, var(--violet) 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 140px 24px 90px;
+  text-align: center;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.hero-orb-1 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, var(--violet), transparent 70%);
+  top: -160px; left: -120px;
+}
+.hero-orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--gold), transparent 70%);
+  bottom: -120px; right: -80px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+}
+
+/* ── CHANGED: hero h1 → beige so readable on purple ── */
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 300;
+  color: var(--beige);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero p {
+  font-size: 1rem;
+  color: var(--beige-soft);
+  opacity: 0.85;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ══ TABS + SEARCH TOOLBAR ══ */
+.tabs-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(123, 63, 196, 0.12);
+  position: sticky;
+  top: 68px;
+  z-index: 80;
+  box-shadow: 0 2px 20px rgba(45, 10, 78, 0.06);
+}
+
+.search-bar-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+.search-bar-wrap svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--violet);
+  pointer-events: none;
+}
+.search-bar {
+  width: 100%;
+  padding: 10px 16px 10px 42px;
+  border: 1.5px solid #E8DDF5;
+  border-radius: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: var(--blush);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.search-bar:focus {
+  border-color: var(--violet);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(123, 63, 196, 0.12);
+}
+.search-bar::placeholder { color: var(--lavender); }
+
+.tabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.tab {
+  background: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 9px 26px;
+  border-radius: 40px;
+  transition: all 0.2s;
+}
+.tab:hover { border-color: var(--lavender); color: var(--royal); }
+.tab.active {
+  background: var(--royal);
+  color: var(--white);
+  border-color: var(--royal);
+  box-shadow: 0 4px 16px rgba(75, 26, 140, 0.3);
+}
+
+/* ══ VIEWS ══ */
+.view { display: none; padding: 40px 24px 80px; max-width: 1180px; margin: 0 auto; }
+.view.active { display: block; }
+
+/* ══ SECTION TITLE ══ */
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--plum);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-bottom: 36px;
+}
+
+/* ══ PRODUCT GRID ══ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 28px;
+}
+
+.product-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: 1px solid rgba(123, 63, 196, 0.08);
+  animation: fadeUp 0.4s ease both;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.product-img-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #F0E8F8, #E8D8F5);
+}
+.product-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+.product-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--lavender);
+}
+.product-body { padding: 18px 20px 20px; }
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 5px;
+}
+.product-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--royal);
+}
+.add-btn {
+  background: linear-gradient(135deg, var(--royal), var(--violet));
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  box-shadow: 0 3px 12px rgba(75, 26, 140, 0.3);
+}
+.add-btn:hover {
+  box-shadow: 0 5px 20px rgba(75, 26, 140, 0.45);
+  transform: scale(1.04);
+}
+
+/* ══ CART VIEW ══ */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+.cart-empty .empty-icon { font-size: 4rem; margin-bottom: 16px; display: block; }
+.cart-empty p { font-size: 1rem; }
+
+.cart-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: var(--white);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(123, 63, 196, 0.07);
+}
+.cart-item-img {
+  width: 72px; height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: linear-gradient(135deg, #F0E8F8, #E8D8F5);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--lavender);
+  overflow: hidden;
+}
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info { flex: 1; }
+.cart-item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 3px;
+}
+.cart-item-price { font-size: 0.85rem; color: var(--muted); }
+
+.qty-ctrl { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.qty-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lavender);
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--royal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.qty-btn:hover { background: var(--royal); color: #fff; border-color: var(--royal); }
+.qty-num { font-weight: 600; font-size: 0.95rem; min-width: 20px; text-align: center; }
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #C4A8E8;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: 0.2s;
+}
+.remove-btn:hover { color: #e74c3c; }
+
+/* ══ ORDER SUMMARY ══ */
+.order-summary {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(123, 63, 196, 0.08);
+  position: sticky;
+  top: 138px;
+  height: fit-content;
+}
+.summary-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--blush);
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+.summary-row.total {
+  border-top: 1px solid var(--blush);
+  padding-top: 12px;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--plum);
+}
+.wrap-option {
+  margin: 16px 0;
+  padding: 14px;
+  background: var(--blush);
+  border-radius: 10px;
+}
+.wrap-option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+.wrap-option input[type=checkbox] { accent-color: var(--violet); width: 16px; height: 16px; }
+
+.checkout-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--plum), var(--royal));
+  color: var(--white);
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 18px;
+  transition: 0.25s;
+  box-shadow: 0 6px 24px rgba(45, 10, 78, 0.35);
+}
+.checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(45, 10, 78, 0.45); }
+.checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ══ CHECKOUT DETAIL VIEW ══ */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+}
+
+.form-section {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  border: 1px solid rgba(123, 63, 196, 0.07);
+}
+.form-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-section-title .icon {
+  width: 30px; height: 30px;
+  background: var(--blush);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-row.full { grid-template-columns: 1fr; }
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #E8DDF5;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--cream);
+  transition: 0.2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--violet);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(123, 63, 196, 0.12);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.payment-opt {
+  border: 1.5px solid #E8DDF5;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: center;
+}
+.payment-opt:hover { border-color: var(--violet); }
+.payment-opt input { display: none; }
+.payment-opt.selected { border-color: var(--royal); background: var(--blush); }
+.payment-opt .pay-icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+.payment-opt .pay-label { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+
+.place-order-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--gold), #A07020);
+  color: var(--plum);
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 22px;
+  transition: 0.25s;
+  box-shadow: 0 6px 24px rgba(201, 168, 76, 0.4);
+}
+.place-order-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(201, 168, 76, 0.55); }
+.place-order-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.checkout-summary {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(123, 63, 196, 0.08);
+  position: sticky;
+  top: 138px;
+}
+.checkout-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--blush);
+  font-size: 0.88rem;
+}
+.checkout-item-row:last-of-type { border-bottom: none; }
+.checkout-item-name { color: var(--text); }
+.checkout-item-qty { color: var(--muted); font-size: 0.78rem; }
+.checkout-item-price { font-weight: 600; color: var(--royal); }
+
+/* ══ SUCCESS VIEW ══ */
+.success-view {
+  text-align: center;
+  padding: 80px 24px;
+}
+.success-icon {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal), var(--violet));
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 8px 32px rgba(75, 26, 140, 0.4);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.success-view h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--plum);
+  margin-bottom: 12px;
+}
+.success-view p { color: var(--muted); margin-bottom: 6px; }
+.success-note {
+  color: var(--muted);
+  font-size: 0.88rem;
+  max-width: 400px;
+  margin: 0 auto 28px;
+}
+.order-ref-badge {
+  display: inline-block;
+  background: var(--blush);
+  border: 1px solid var(--lavender);
+  color: var(--royal);
+  padding: 8px 24px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 16px 0 28px;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.08em;
+}
+.back-shop-btn {
+  background: linear-gradient(135deg, var(--royal), var(--violet));
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.2s;
+  box-shadow: 0 4px 18px rgba(75, 26, 140, 0.35);
+}
+.back-shop-btn:hover { transform: translateY(-2px); }
+
+/* ══ ADMIN / MANAGE VIEW ══ */
+.manage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.admin-label { font-size: 0.75rem; color: var(--muted); }
+.manage-info-banner {
+  background: linear-gradient(135deg, #FFF9E6, #FFF3CC);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  color: #7A5A10;
+  margin-bottom: 24px;
+}
+.manage-info-banner a { color: var(--royal); font-weight: 600; }
+
+.manage-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: var(--white);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.manage-img {
+  width: 64px; height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: var(--blush);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--lavender);
+}
+.manage-img img { width: 100%; height: 100%; object-fit: cover; }
+.manage-info-col { flex: 1; }
+.manage-prod-name { font-weight: 600; color: var(--plum); font-size: 0.95rem; }
+.manage-prod-price { font-size: 0.82rem; color: var(--muted); }
+.manage-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.badge-active   { background: #E6F9F0; color: #1A7A4A; }
+.badge-inactive { background: #FEF0F0; color: #C0392B; }
+
+/* ══ TOAST ══ */
+.toast {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 999;
+  background: var(--plum);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  border-left: 3px solid var(--gold);
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ══ LOADING ══ */
+.loading-wrap {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+.spinner {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--blush);
+  border-top-color: var(--royal);
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+/* ══ RESULTS META ══ */
+.results-meta {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.results-meta strong { color: var(--royal); }
+
+/* ══ ANIMATIONS ══ */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn   { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 860px) {
+  .cart-layout     { grid-template-columns: 1fr; }
+  .checkout-grid   { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header           { padding: 0 16px; }
+  .brand           { font-size: 1.4rem; }
+  .nav-btn:not(.cart-btn) { display: none; }
+  .view            { padding: 28px 14px 80px; }
+  .payment-options { grid-template-columns: 1fr; }
+  .search-bar-wrap { max-width: 100%; }
+  .tabs-wrap       { padding: 12px 14px; gap: 10px; }
+}
+@media (max-width: 560px) {
+  .form-row        { grid-template-columns: 1fr; }
+}
+  </style>
 </head>
 <body>
 
-  <!-- ░░ SPARKLE CANVAS ░░ -->
-  <canvas id="sparkle-canvas"></canvas>
-
-  <!-- ░░ NAVBAR ░░ -->
-  <nav class="navbar">
-    <div class="nav-logo">
-      <img src="Logo__4_.png" alt="Don Trove Logo" class="nav-logo-img" />
-      <span class="nav-brand">Don Trove</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#collection">Collection</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#order">Order</a></li>
-    </ul>
-    <button class="nav-cta" onclick="scrollToOrder()">✦ Order Now</button>
+<header>
+  <a class="brand" href="#">
+    <span>Don</span> Trove
+  </a>
+  <nav>
+    <button class="nav-btn active" onclick="showView('shop')">Shop</button>
+    <button class="nav-btn" onclick="showView('cart')">My Cart</button>
+    <button class="nav-btn cart-btn" onclick="showView('cart')">
+      🛍️ Cart
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
   </nav>
+</header>
 
-  <!-- ░░ HERO ░░ -->
-  <section class="hero" id="home">
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-      <p class="hero-sub">✦ Le Trésor de Misfah ✦</p>
-      <h1 class="hero-title">Don<br /><em>Trove</em></h1>
-      <p class="hero-desc">Handcrafted treasures forged at the heart of Misfah — where ancient artisanry meets ethereal design.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollToSection('collection')">Explore Collection</button>
-        <button class="btn-ghost" onclick="scrollToSection('order')">Place an Order</button>
-      </div>
-    </div>
-    <div class="hero-key-wrap">
-      <img src="Logo__4_.png" alt="Key Logo" class="hero-key" />
-    </div>
-  </section>
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ Curated with love</div>
+    <h1>Le Tresor De Misfah.</h1>
+  </div>
+</div>
 
-  <!-- ░░ MARQUEE ░░ -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span>✦ Le Trésor de Misfah</span>
-      <span>✦ Handcrafted Luxury</span>
-      <span>✦ Don Trove</span>
-      <span>✦ Rare Finds</span>
-      <span>✦ Le Trésor de Misfah</span>
-      <span>✦ Handcrafted Luxury</span>
-      <span>✦ Don Trove</span>
-      <span>✦ Rare Finds</span>
-      <span>✦ Le Trésor de Misfah</span>
-      <span>✦ Handcrafted Luxury</span>
-      <span>✦ Don Trove</span>
-      <span>✦ Rare Finds</span>
+<!-- ══ TABS ══ -->
+<div class="tabs-wrap">
+  <div class="search-bar-wrap">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-bar" id="searchInput" type="text" placeholder="Search gifts…" oninput="filterProducts()">
+  </div>
+  <div class="tabs-row" id="catTabs"></div>
+</div>
+<div class="results-meta" id="resultsMeta"></div>
+
+<!-- ══ SHOP VIEW ══ -->
+<div class="view active" id="view-shop">
+  <p class="section-title">Our Collection</p>
+  <p class="section-sub">Each gift is carefully selected to delight the ones you love</p>
+  <div id="productsGrid" class="products-grid">
+    <div class="loading-wrap">
+      <div class="spinner"></div>
+      <p>Loading beautiful gifts…</p>
     </div>
   </div>
+</div>
 
-  <!-- ░░ COLLECTION ░░ -->
-  <section class="collection" id="collection">
-    <div class="section-header">
-      <p class="section-label">The Collection</p>
-      <h2 class="section-title">Featured Pieces</h2>
-    </div>
-
-    <!-- Products are rendered here by JS (fetched from Apps Script) -->
-    <div class="product-grid" id="product-grid">
-      <div class="product-loading">
-        <div class="spinner"></div>
-        <p>Loading collection…</p>
+<!-- ══ CART VIEW ══ -->
+<div class="view" id="view-cart">
+  <p class="section-title">Your Cart</p>
+  <p class="section-sub">Review your selections before proceeding</p>
+  <div class="cart-layout">
+    <div id="cartItemsList"></div>
+    <div class="order-summary">
+      <div class="summary-title">Order Summary</div>
+      <div class="summary-row"><span>Subtotal</span><span id="summSubtotal">PKR 0</span></div>
+      <div class="wrap-option">
+        <label>
+          <input type="checkbox" id="giftWrapCheck" onchange="updateSummary()"/>
+          🎁 Premium Gift Wrapping — PKR 300
+        </label>
       </div>
+      <div class="summary-row"><span>Delivery Fee</span><span id="summDelivery">PKR 200</span></div>
+      <div class="summary-row total"><span>Total</span><span id="summTotal">PKR 0</span></div>
+      <button class="checkout-btn" id="proceedBtn" onclick="proceedToCheckout()" disabled>
+        Place Order →
+      </button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ░░ ABOUT ░░ -->
-  <section class="about" id="about">
-    <div class="about-left">
-      <img src="Logo__4_.png" alt="Don Trove Key" class="about-img" />
-    </div>
-    <div class="about-right">
-      <p class="section-label">Our Story</p>
-      <h2 class="section-title">Le Trésor<br /><em>de Misfah</em></h2>
-      <p class="about-text">
-        Born from the mystical alleys of Misfah, Don Trove is more than a brand — it is a living archive of beauty. Each piece carries the whisper of ancient craft, reimagined with a modern, ethereal touch.
-      </p>
-      <p class="about-text">
-        Every treasure is thoughtfully curated, limited in quantity, and infinite in soul. We believe luxury is not loud — it is felt.
-      </p>
-      <div class="about-stats">
-        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Handcrafted</span></div>
-        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Passion</span></div>
-        <div class="stat"><span class="stat-num">1</span><span class="stat-label">of a kind</span></div>
-      </div>
-    </div>
-  </section>
+<!-- ══ CHECKOUT DETAIL VIEW ══ -->
+<div class="view" id="view-checkout">
+  <p class="section-title">Order Details</p>
+  <p class="section-sub">Tell us where to send your thoughtful gift</p>
+  <div class="checkout-grid">
+    <div>
 
-  <!-- ░░ ORDER FORM ░░ -->
-  <section class="order-section" id="order">
-    <div class="section-header">
-      <p class="section-label">Secure Your Piece</p>
-      <h2 class="section-title">Place an Order</h2>
-    </div>
-
-    <div class="order-card">
-      <div id="form-success" class="form-success hidden">
-        <div class="success-icon">✦</div>
-        <h3>Order Received!</h3>
-        <p>Thank you. We'll reach out to confirm your treasure shortly.</p>
-        <button class="btn-primary" onclick="resetForm()">Place Another Order</button>
-      </div>
-
-      <form id="order-form" class="order-form" onsubmit="submitOrder(event)">
+      <!-- Sender -->
+      <div class="form-section">
+        <div class="form-section-title"><div class="icon">👤</div> Your Information</div>
         <div class="form-row">
           <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" placeholder="Your name" required />
+            <label>Your Name *</label>
+            <input type="text" id="senderName" placeholder="Full name" required/>
           </div>
           <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" placeholder="your@email.com" required />
+            <label>Phone *</label>
+            <input type="tel" id="phone" placeholder="+92 300 0000000" required/>
           </div>
         </div>
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="your@email.com"/>
+          </div>
+        </div>
+      </div>
 
+      <!-- Recipient -->
+      <div class="form-section">
+        <div class="form-section-title"><div class="icon">🎁</div> Recipient Details</div>
         <div class="form-row">
           <div class="form-group">
-            <label for="phone">Phone / WhatsApp</label>
-            <input type="tel" id="phone" placeholder="+968 XXXX XXXX" />
+            <label>Recipient Name *</label>
+            <input type="text" id="recipientName" placeholder="Who is this for?"/>
           </div>
           <div class="form-group">
-            <label for="product">Product *</label>
-            <select id="product" required>
-              <option value="" disabled selected>Select a piece…</option>
+            <label>Occasion</label>
+            <select id="occasion">
+              <option value="">Select occasion</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Wedding</option>
+              <option>Baby Shower</option>
+              <option>Graduation</option>
+              <option>Eid</option>
+              <option>Just Because</option>
+              <option>Other</option>
             </select>
           </div>
         </div>
-
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Delivery Address *</label>
+            <textarea id="address" placeholder="Full delivery address including city"></textarea>
+          </div>
+        </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="qty">Quantity *</label>
-            <input type="number" id="qty" min="1" value="1" required />
+            <label>Preferred Delivery Date</label>
+            <input type="date" id="deliveryDate"/>
           </div>
           <div class="form-group">
-            <label for="country">Country / Region *</label>
-            <input type="text" id="country" placeholder="e.g. Oman" required />
+            <label>Gift Message</label>
+            <input type="text" id="giftMessage" placeholder="A special note…"/>
           </div>
         </div>
+      </div>
 
-        <div class="form-group full-width">
-          <label for="notes">Special Notes</label>
-          <textarea id="notes" rows="3" placeholder="Any customisation requests or special instructions…"></textarea>
+      <!-- Payment -->
+      <div class="form-section">
+        <div class="form-section-title"><div class="icon">💳</div> Payment Method</div>
+        <div class="payment-options" id="paymentOptions">
+          <div class="payment-opt selected" onclick="selectPayment(this,'Cash on Delivery')">
+            <input type="radio" name="payment" checked/>
+            <span class="pay-icon">💵</span>
+            <div class="pay-label">Cash on Delivery</div>
+          </div>
+          <div class="payment-opt" onclick="selectPayment(this,'EasyPaisa')">
+            <input type="radio" name="payment"/>
+            <span class="pay-icon">📱</span>
+            <div class="pay-label">EasyPaisa</div>
+          </div>
+          <div class="payment-opt" onclick="selectPayment(this,'JazzCash')">
+            <input type="radio" name="payment"/>
+            <span class="pay-icon">🏦</span>
+            <div class="pay-label">JazzCash</div>
+          </div>
+          <div class="payment-opt" onclick="selectPayment(this,'Bank Transfer')">
+            <input type="radio" name="payment"/>
+            <span class="pay-icon">🔁</span>
+            <div class="pay-label">Bank Transfer</div>
+          </div>
         </div>
+      </div>
 
-        <button type="submit" class="btn-primary submit-btn" id="submit-btn">
-          <span id="btn-text">✦ Submit Order</span>
-          <span id="btn-loader" class="hidden">Sending…</span>
-        </button>
-
-        <p class="form-note">By submitting, you agree to be contacted regarding your order. No payment is collected at this stage.</p>
-      </form>
+      <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
+        ✦ Confirm &amp; Place Order
+      </button>
     </div>
-  </section>
 
-  <!-- ░░ FOOTER ░░ -->
-  <footer class="footer">
-    <div class="footer-logo">
-      <img src="Logo__4_.png" alt="Don Trove" />
-      <p class="footer-brand">Don Trove</p>
-      <p class="footer-tagline">Le Trésor de Misfah</p>
+    <!-- Right: order recap -->
+    <div class="checkout-summary">
+      <div class="summary-title">Your Order</div>
+      <div id="checkoutItemsList"></div>
+      <div class="summary-row" style="margin-top:14px;"><span>Subtotal</span><span id="co-subtotal">PKR 0</span></div>
+      <div class="summary-row"><span>Gift Wrap</span><span id="co-wrap">—</span></div>
+      <div class="summary-row"><span>Delivery</span><span>PKR 200</span></div>
+      <div class="summary-row total"><span>Total</span><span id="co-total">PKR 0</span></div>
     </div>
-    <div class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#collection">Collection</a>
-      <a href="#about">About</a>
-      <a href="#order">Order</a>
-    </div>
-    <p class="footer-copy">© 2026 Don Trove. All rights reserved. Crafted with ✦</p>
-  </footer>
+  </div>
+</div>
 
-  <script src="app.js"></script>
+<!-- ══ SUCCESS VIEW ══ -->
+<div class="view" id="view-success">
+  <div class="success-view">
+    <div class="success-icon">✦</div>
+    <h2>Order Placed!</h2>
+    <p>Thank you for shopping with Don Trove.</p>
+    <p>Your reference number is:</p>
+    <div class="order-ref-badge" id="successRef">DT-000000</div>
+    <p class="success-note">
+      We'll contact you shortly to confirm your order. Expect your gift to arrive beautifully wrapped and right on time. 💜
+    </p>
+    <button class="back-shop-btn" onclick="resetAll()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ══ ADMIN / MANAGE VIEW ══ -->
+<div class="view" id="view-manage">
+  <div class="manage-header">
+    <p class="section-title" style="margin:0">Manage Products</p>
+    <span class="admin-label">🔒 Admin only</span>
+  </div>
+  <div class="manage-info-banner">
+    📋 Products are managed directly in your <strong>Google Sheet</strong>.<br/>
+    Open your sheet → <em>Products</em> tab → Add/edit rows.<br/>
+    Columns: <strong>Name | Price | Description | Image URL | Active (YES/NO)</strong><br/>
+    <a href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener">Open Google Sheets →</a>
+  </div>
+  <div id="manageList">
+    <div class="loading-wrap"><div class="spinner"></div><p>Loading products…</p></div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script src="app.js"></script>
 </body>
 </html>
