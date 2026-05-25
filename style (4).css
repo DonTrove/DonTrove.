@@ -1008,7 +1008,7 @@ nav { display: flex; align-items: center; gap: 8px; }
 }
 @media (max-width: 640px) {
   header         { padding: 0 16px; }
-  .brand         { font-size: 1.4rem; }
+  .brand         { font-size: 0.9rem; letter-spacing: 0.06em; }
   .nav-btn:not(.cart-btn) { display: none; }
   .view          { padding: 28px 14px 80px; }
   .payment-options { grid-template-columns: 1fr; }
